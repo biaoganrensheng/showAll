@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据表格</title>
+    <meta name="keywords" content="艋顺,艋顺科技，艋顺科技公司">
+    <meta name="description" content="艋顺,艋顺科技，艋顺科技公司">
+    <link rel="shortcut icon" href="images/logo.ico" type="images/x-icon" />
+    <link rel="icon" href="images/logo.ico" type="images/x-icon" />
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <!-- 数据表格 -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .form-inline{
+            margin-bottom: 10px;
+        }
+        .form-group{
+            margin-right:8px;
+        }
+        .btn.find ,.btn.set{
+            margin-top:6px;
+            margin-left: 10px;
+        }
+        .ding_control{
+            background:url(images/biao_xuan.png) no-repeat center;
+            position:relative;
+        }
+        .ding_control:hover div{
+            display:block;
+        }
+       .ding_control div{
+            position: absolute;
+            right:0;
+            top:0;
+            width: 1000px;
+            min-width: 1000px;
+            z-index:999;
+            height:100%;
+            display:none;
+        }
+        .ding_control div p{
+            height:100%;
+            position:absolute;
+            right:0;
+            top:0;
+            display:table;
+        }
+        .ding_control div a{
+            font-size:16px;
+            padding:0 14px;
+            color:#fff;
+            background:#4E6CA3;
+            display:table-cell;
+            vertical-align:middle;
+        }
+
+        .ding_control div a:hover{
+            color:#27C24C;
+        }
+
+        .user_div{
+            margin-top:4px;
+        }
+        .user_div>div{
+            margin-bottom:1em;
+        }
+        .user_select{
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #cfdadd;
+            box-shadow: none;
+            width:60%;height:30px;
+        }
+        .radio-1 {
+            text-align: center;
+            top:10px;
+            display:inline-block;
+            position:relative;
+            left:14px;
+        }
+        .radio-1 [type="radio"] {
+            display: none;
+        }
+        .radio-1 label {
+            display: inline-block;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            border: 1px #ccc solid;
+            background-color: #fff;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 100%;
+        }
+        .radio-1 label:after {
+            content: '';
+            position: absolute;
+            top: 1.6px;
+            left: 1.8px;
+            width: 15px;
+            height: 15px;
+            background-color: #00a1e9;
+            border-radius: 50%;
+            -webkit-transform: rotate(0deg) scale(0) skew(0) translate(0);
+            -moz-transform: rotate(0deg) scale(0) skew(0) translate(0);
+            -o-transform: rotate(0deg) scale(0) skew(0) translate(0);
+            -ms-transform: rotate(0deg) scale(0) skew(0) translate(0);
+            transform: rotate(0deg) scale(0) skew(0) translate(0);
+            -webkit-transition: transform 0.2s ease-out;
+            -moz-transition: transform 0.2s ease-out;
+            -o-transition: transform 0.2s ease-out;
+            -ms-transition: transform 0.2s ease-out;
+            transition: transform 0.2s ease-out;
+        }
+        .radio-1 [type="radio"]:checked + label {
+            background-color: #eee;
+            -webkit-transition: background-color 0.2s ease-in;
+            -moz-transition: background-color 0.2s ease-in;
+            -o-transition: background-color 0.2s ease-in;
+            -ms-transition: background-color 0.2s ease-in;
+            transition: background-color 0.2s ease-in;
+        }
+        .radio-1 [type="radio"]:checked + label:after {
+            -webkit-transform: rotate(0deg) scale(1) skew(0) translate(0);
+            -moz-transform: rotate(0deg) scale(1) skew(0) translate(0);
+            -o-transform: rotate(0deg) scale(1) skew(0) translate(0);
+            -ms-transform: rotate(0deg) scale(1) skew(0) translate(0);
+            transform: rotate(0deg) scale(1) skew(0) translate(0);
+            -webkit-transition: transform 0.2s ease-in;
+            -moz-transition: transform 0.2s ease-in;
+            -o-transition: transform 0.2s ease-in;
+            -ms-transition: transform 0.2s ease-in;
+            transition: transform 0.2s ease-in;
+        }
+        .radio-1 .user_radio {
+            position: relative;
+            top: -9px;
+            margin-right: 12px;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <!--搜索条件-->
+                    <div class="form-inline" role="form">
+                        <div class="row">
+                            <form action="">
+                                <div class="col-md-9">
+                                    <div class="row user_div">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="name1">输入用户名:</label>
+                                            <input type="text" class="form-control" id="name1" placeholder="请输入搜索条件">
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="name1">输入用户名:</label>
+                                            <input type="text" class="form-control" id="name2" placeholder="请输入搜索条件">
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="name1">输入用户名:</label>
+                                            <input type="text" class="form-control" id="name3" placeholder="请输入搜索条件">
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="name1">输入用户名:</label>
+                                            <input type="text" class="form-control" id="name4" placeholder="请输入搜索条件">
+                                        </div>
+                                        <div class="col-md-4 col-sm-12 col-xs-12 pull-right">
+                                            <div class="row">
+                                                <div class="col-md-8 col-sm-12 col-xs-12" style="padding:0;">
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <button class="btn btn-info btn-block">搜索</button>
+                                                    </div>
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <button class="btn btn-primary btn-block">重置</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <button class="btn btn-danger btn-block batch">
+                                                <span class="fa fa-edit"></span>
+                                                批量删除
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <button class="btn btn-success btn-block" id="add_user">
+                                                <span class="fa fa-plus"></span>
+                                                添加用户
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" class="userList_check_control"></th>
+                            <th>ID</th>
+                            <th>用户名</th>
+                            <th>性别</th>
+                            <th>手机</th>
+                            <th>身份证号</th>
+                            <th>邮箱</th>
+                            <th>地址</th>
+                            <th>加入时间</th>
+                            <th>状态</th>
+                            <th style="border-left:none;background: #fff;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                13
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄
+                                Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit.
+                                A aliquam at consectetur, eligendi
+                                esse, explicabo hic illo impedit i
+                                nventore ipsum molestias natus nemo n
+                                ihil quia quo reprehenderit sapiente,
+                                sed soluta.
+                                Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit.
+                                A aliquam at consectetur, eligendi
+                                esse, explicabo hic illo impedit i
+                                nventore ipsum molestias natus nemo n
+                                ihil quia quo reprehenderit sapiente,
+                                sed soluta.
+                                Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit.
+                                A aliquam at consectetur, eligendi
+                                esse, explicabo hic illo impedit i
+                                nventore ipsum molestias natus nemo n
+                                ihil quia quo reprehenderit sapiente,
+                                sed soluta.
+                                Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit.
+                                A aliquam at consectetur, eligendi
+                                esse, explicabo hic illo impedit i
+                                nventore ipsum molestias natus nemo n
+                                ihil quia quo reprehenderit sapiente,
+                                sed soluta.
+                            </td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+                                        <a href="" class="del">删除</a>
+
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                14
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                15
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-default btn-xs" style="margin-bottom: 0px;background:#E6E6E6;">已停用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                金少
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                达人
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-default btn-xs" style="margin-bottom: 0px;background:#E6E6E6;">已停用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                达人
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                达人
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-default btn-xs" style="margin-bottom: 0px;background:#E6E6E6;">已停用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                达人
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                达人
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                达人
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                达人
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-default btn-xs" style="margin-bottom: 0px;background:#E6E6E6;">已停用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                达人
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-default btn-xs" style="margin-bottom: 0px;background:#E6E6E6;">已停用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkbox_name[]">
+                            </td>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                达人
+                            </td>
+                            <td>男</td>
+                            <td>16964554564</td>
+                            <td>16454646546544545466</td>
+                            <td>16964554564@qq.com</td>
+                            <td>杭州市西湖区骆家庄</td>
+                            <td>2016-12-22</td>
+                            <td>
+                                <button class="btn btn-default btn-xs" style="margin-bottom: 0px;background:#E6E6E6;">已停用</button>
+                            </td>
+                            <td class="ding_control">
+                                <div>
+                                    <p>
+                                        <a href="" class="go">停用</a>
+                                        <a href="" class="edit">编辑</a>
+                                        <a href="">修改密码</a>
+                                        <a href="" class="del">删除</a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 全局js -->
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<!-- Data Tables插件的js -->
+<script src="js/plugins/dataTables/jquery.dataTables.min2.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<!--<script src="js/plugins/layer/layer.min.js"></script>-->
+<script src="js/public_alert.js"></script>
+<!-- 自定义js -->
+<!-- Page-Level Scripts -->
+<script>
+    (function(win,doc,$,lay){
+        //datatable 配置
+        $(doc).ready( function() {
+            aa=$('.dataTables-example').DataTable( {
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [0,10] }
+                ] });
+            console.log(aa.data());
+        } );
+
+        // 全选按钮
+     $(".table").on("click","INPUT[name='checkbox_name[]']",function () {
+                 
+                var flag=true;
+                $("INPUT[name='checkbox_name[]']").each(function (i,v) {
+                    if(false == $(v).is(':checked')){
+                        $(".userList_check_control").prop("checked",false);
+                        flag=false;
+                    }
+                })
+                if(flag){
+                     $(".userList_check_control").prop("checked",true);
+                }
+            })
+
+        $(".userList_check_control").bind("click", function () {
+            if($('.userList_check_control').is(':checked') == true){
+                $("INPUT[name='checkbox_name[]']").each( function() {
+                    if(false == $(this).is(':checked')){
+                        $(this).prop("checked", true);
+                    }
+                });
+            }
+            if($('.userList_check_control').is(':checked') == false){
+                $("INPUT[name='checkbox_name[]']").each( function() {
+                    if(true == $(this).is(':checked')){
+                        $(this).prop("checked", false);
+                    }
+                });
+            }
+        });
+        //  批量删除
+        $(".batch").on("click", function(e) {
+            e.preventDefault();
+            0 == $(".table tbody :checkbox:checked").length
+                ? ms.msg("请选择需要删除的数据！",0,2000) :
+                ms.confirm("警告","确定要删除吗?",0,"确定","取消",function() {
+                    $(".table tbody :checkbox:checked").parents("tr").remove(),
+                        ms.msg("已删除",1,600);
+                })
+        })
+        //    添加用户
+        $("#add_user").on("click", function() {
+            var e = $(this).html();
+            var t="add_user.html";
+            ms.open(e, t, "1000", "600")
+        }),
+            //    删除一行
+            $(".table ").on("click",".ding_control div a.del",function (e) {
+                e.preventDefault();
+                var t=$(this);
+                ms.confirm("警告","确定要删除吗?",0,"确定","取消",function() {
+                    t.parent().parent().parent().parent().remove();
+                    ms.msg("已删除",1,600);
+                })
+            })
+        //    重新启用或停用
+        $(".table ").on("click",".ding_control div a.go",function (e) {
+            e.preventDefault();
+            var t=$(this);
+            if(t.text()=="启用"){
+                ms.confirm("警告","确定要启用吗?",0,"确定","取消",function(){
+                    t.html("停用");
+                    t.parent().parent().parent().prev().html('<button class="btn btn-info btn-xs" style="margin-bottom: 0px;">已启用</button>');
+                    ms.msg("已启用",5,600);
+                })
+            }else{
+                ms.confirm("警告","确认要停用吗?",0,"确定","取消",function(){
+                    t.html("启用");
+                    t.parent().parent().parent().prev().html('<button class="btn btn-default btn-xs" style="margin-bottom: 0px;background:#E6E6E6;">已停用</button>');
+                    ms.msg("已停用",5,600);
+                })
+            }
+        })
+        //    编辑
+        $(".table ").on("click",".ding_control div a.edit",function (e) {
+            e.preventDefault();
+            var data=aa.row().data();
+            var e = $(this).html();
+            var t="add_user.html";
+            ms.open(e, t,"1000", "600");
+        })
+    })(window,document,jQuery,layer);
+</script>
+</body>
+</html>

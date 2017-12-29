@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="webkit" name="renderer">
+    <title>
+        艋顺科技
+    </title>
+    <meta content="艋顺,艋顺科技，艋顺科技公司" name="keywords" />
+    <meta content="艋顺,艋顺科技，艋顺科技公司" name="description" />
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<!--网页图标-->
+<link href="images/logo.ico" rel="shortcut icon" type="images/x-icon"/>
+<link href="images/logo.ico" rel="icon" type="images/x-icon"/>
+<!--bootstrapt样式文件-->
+<link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<!--定义动画的文件-->
+<link href="css/animate.css" rel="stylesheet" />
+<link href="css/plugins/layerUI/layui.css" rel="stylesheet" />
+<style>
+#wrapper{
+    background: #fff;
+}
+.navbar-fixed-top{
+    background: #3d86bd!important;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+.root{
+    line-height:60px;
+
+}
+.logo,.navbar-nav.item-sort a{
+    color: #fff !important;
+}
+.g-main{
+    position: fixed;
+    top: 60px;
+    left: 15px;
+    right: 15px;
+    width: 100%;
+}
+.silder{
+    position: fixed;
+    z-index: 1000;
+    top: 60px;
+    bottom: 0;
+    left: 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.mapContainer{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.g-footer{
+  line-height: 40px;  
+}
+
+body .layui-tree-skin-defineB .layui-tree-branch{color: #3D86BD;}
+</style>                              
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <!--全部内容都在wrapper 容器内-->
+    <div id="wrapper">
+        <div class="g-header">
+            <nav class="navbar navbar-inverse navbar-fixed-top nav-header">
+                <div class="container-fluid root">
+                    <div class="navbar-header nav-logo">
+                        <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                            <span class="icon-bar">
+                            </span>
+                        </button>
+                        <a class="navbar-brand logo" href="/">
+                            地图后台
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse nav-menu" id="navbar">
+                            <!-- <ul class="nav navbar-nav navbar-right item-sort">
+                                <li>
+                                    <a href="javascript:;">
+                                        首页
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        在线地图
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        手机地图
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        标准样图
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        出版地图
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        综合服务
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        资源中心
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        应用示范
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        三维浙江
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        登录
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        注册
+                                    </a>
+                                </li>
+                            </ul> -->
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="g-main">
+                <div class="container-fluid">
+                    <div class="row" style="margin-right:0;position: relative;">
+                         <div id="showBar" style="position: absolute;width:40px;height:60px;line-height: 60px;text-align: center;z-index: 10000;background: #d9edf7;left:-100%;opacity: 0;color:#31708f">
+                             <i class="glyphicon glyphicon-step-forward"></i>
+                         </div>
+                        <div class="col-md-2 silder"  id="silder">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    条件查询
+
+                                <i class="glyphicon glyphicon-step-backward pull-right"></i>
+                                   
+                                </div>
+                                <div class="panel-body">
+                                    <ul id="demo">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-md-offset-2"  id="showContainer">
+                            <div class="ui-content">
+                                <div class="mapContainer">
+                                    <iframe id="J_iframe" width="100%" height="100%" src="" frameborder="0">
+                                    </iframe>
+                                </div>
+                            </div>
+                            <div class="g-footer text-center">
+                                © 2017 艋顺科技. All Rights Reserved
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 全局js -->
+        <!--jquery依赖文件-->
+        <script src="js/jquery.min.js?v=2.1.4">
+        </script>
+        <!--bootstrapt js文件-->
+        <script src="js/bootstrap.min.js?v=3.3.6">
+        </script>
+        <script src="js/plugins/layerUI/layui.js">
+        </script>
+        <!-- 第三方插件 -->
+        <!--页面加载进度条插件-->
+        <script>
+        var parUrl; 
+       function resizeHeight(){
+           var contentH=$(".silder").height()-40 +"px";
+           $(".ui-content").height(contentH);  
+       }
+
+       function InitData(){
+        var _src="testData.json";
+        $.getJSON(_src, {userName: 'lpf'}, function(data, textStatus) {
+            $("#demo").html(null);
+            var initUrl=data[0].children[0].url;
+            $("#J_iframe").attr('src',initUrl);
+            layui.use('tree', function(){
+                var tree = layui.tree({
+                skin: 'defineB',
+                elem: '#demo', //指定元素
+                drag: true,
+                click: function(item){
+                    var _url=item.url;
+                    parUrl=item.parentUrl;
+                    $("#J_iframe").attr('src',_url);
+                    return false;
+                },
+                nodes:data
+            });
+            });
+        });
+    }  
+    $(window).resize(function(){
+        resizeHeight();
+        //InitData();
+    });
+
+    $(function(){
+        resizeHeight();
+        InitData();   
+    });
+    $(".glyphicon-step-backward").click(function(){
+        $("#silder").animate({"left":"-100%","opacity":0},500,function(){
+            $("#showContainer").attr("class","col-md-12");
+            $("#showBar").animate({"left":"0","opacity":"1"},600)    
+        });
+    });
+     $("#showBar").click(function(e){
+        $(this).animate({"left":"-100%","opacity":"1"},600,function(){
+              $("#silder").animate({"left":"15px","opacity":1},500);
+            $("#showContainer").attr("class","col-md-10 col-md-offset-2");
+        }); 
+     })
+    </script>
+</body>
+</html>

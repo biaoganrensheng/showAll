@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日程</title>
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/plugins/fullcalendar/fullcalendar.css">
+    <link rel="stylesheet" href="css/plugins/fullcalendar/fullcalendar.print.css" media="print">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min3.css">
+    <link rel="stylesheet" href="css/jquery.minicolors.css">
+    <link rel="stylesheet" href="css/richeng.css">
+    <style>
+        body{
+            background-color: #333;
+            padding-top:20px;
+        }
+        .external-event{
+            position: relative;
+            z-index:199;
+        }
+        .external-event .item-remove{
+            position: absolute;
+            top:10px;
+            right: 10px;
+            z-index:200;
+            cursor: pointer;
+        }
+        .del-rc{
+           position: absolute;
+            z-index: 2000;
+            right:6px;
+            top:6px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 bj">
+                <div class="box box-primary">
+                    <div class="box-body no-padding">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--test-->
+<div id="showtpl"></div>
+<!-- 全局js -->
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/jquery-ui-1.10.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/jquery.minicolors.js"></script>
+<script src="js/jqmeter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.gai.js"></script>
+<script src="js/plugins/fullcalendar/fullcalendar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/1.3.20/store.min.js"></script>
+<script src="js/zh-cn.js"></script>
+<script id="rctpl" type="text/x-handlebars-template">
+    <div class="modal fade" id="richengModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title text-danger" id="myModalLabe2">
+                        添加日程
+                    </h4>
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group has-feedback">
+                            <label for="biaoti" class="col-sm-2 control-label">标题</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="biaoti" placeholder="请输入标题" value="{{title}}">
+                                <span class="glyphicon glyphicon-edit form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rizhi" class="col-sm-2 control-label">日志</label>
+                            <div class="col-sm-10">
+                                <textarea  class="form-control" id="rizhi" placeholder="写入日程安排" style="min-height:150px;max-width:100%;">{{rizhi}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback" >
+                            <label for="kaishi" class="col-sm-2 control-label">开始时间</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control date-picker" id="kaishi" placeholder="请输入开始时间" value="{{start}}">
+                                <span class="glyphicon glyphicon-time form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="jieshu" class="col-sm-2 control-label">结束时间</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control date-picker" id="jieshu" placeholder="请输入结束时间" value="{{end}}">
+                                <span class="glyphicon glyphicon-time form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="jindu" class="col-sm-2 control-label">完成进度</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jindu" placeholder="请填写已完成的进度(格式 10%)" value="{{process}}">
+                                <span class="glyphicon glyphicon-align-left form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="hidden-input" class="col-sm-2 control-label">日历颜色</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" id="hidden-input" class="form-control rcColor" placeholder="选择我要的日程颜色" value="{{backgroundColor}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="tx-rc" type="checkbox" {{remindChecked}}> 开启提醒
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="tx-qt" type="checkbox" {{dayChecked}}> 开启全天
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="richeng_alert" class="alert alert-warning" style="display:none;">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>警告！</strong>您的网络连接有问题。
+                    </div>
+                    <div class="modal-footer">
+
+                        <div class="row">
+                            {{#if OrCreateing}}
+                            <div class=" col-sm-offset-6 col-sm-3">
+                                <div><a class="btn btn-md btn-success submit-rc">提交日程</a></div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div><a class="btn btn-md btn-default cancel-rc">取消</a></div>
+                            </div>
+                            {{else}}
+                            <div class="col-sm-4 pull-right">
+                                <div><a class="btn btn-md btn-default cancel-rc">取消</a></div>
+                            </div>
+                            <div class='col-sm-4 pull-right'>
+                                <div><a class="btn btn-md btn-warning save-rc">保存修改</a></div>
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+
+
+
+    $(function () {
+        var RC_Arr=[];
+/*原型添加日期格式化*/
+        Date.prototype.trans = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小时
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds(), //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+/*十六进制颜色值的正则表达式*/
+        function rgbToHex(rgb) {
+            // rgb(x, y, z)
+            var color = rgb.toString().match(/\d+/g); // 把 x,y,z 推送到 color 数组里
+            var hex = "#";
+            for (var i = 0; i < 3; i++) {
+                // 'Number.toString(16)' 是JS默认能实现转换成16进制数的方法.
+                // 'color[i]' 是数组，要转换成字符串.
+                // 如果结果是一位数，就在前面补零。例如： A变成0A
+                hex += ("0" + Number(color[i]).toString(16)).slice(-2);
+            }
+            return hex;
+        }
+/*初始化calendar*/
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prevYear,prev,today,next,nextYear',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            aspectRatio:1,
+            firstDay:1,
+            editable:true,
+            allDayDefault:false,
+            droppable: true,
+            selectable: true,
+            selectHelper: true,
+            unselectAuto: true,
+            dragOpacity:{
+                agenda:.5, //对于agenda试图
+                '':1.0 //其他视图
+            },
+            dayClick: function(date, allDay, jsEvent, view){
+                console.log("这是dayClick的事件");
+                var name=("rc_"+Math.random()).replace(".","_");
+                var color="#f00";
+                var def_obj={//对应日程 name 的初始化参数(容错)
+                    name:name,
+                    start:date.format('YYYY-MM-DD HH:mm'),
+                    end:date.format('YYYY-MM-DD HH:mm'),
+                    backgroundColor:color,
+                    borderColor:color,
+                    OrCreateing:true,
+                    process:0
+                };
+                RC_bianyi(def_obj);
+                RC_edit(def_obj);
+            },
+            eventAfterRender:function(event,element,view){
+                console.log("这是eventAfterRender的事件");
+                    var elContainer=("container_"+Math.random()).replace(".","_");
+                    var elClass=("flag_"+Math.random()).replace(".","_");
+                    $(element).addClass(elContainer);
+                    $("."+elContainer).find(".fc-content").append("<i class='glyphicon glyphicon-remove item-remove  del-rc'></i><div class='"+elClass+"'></div>")
+                    $('.'+elClass).jQMeter({
+                        goal:'100%',
+                        raised:event.process,
+                        orientation:'horizontal',
+                        width:'100%',
+                        height:'22px',
+                        displayTotal:true,
+                        bgColor:"#fff",
+                        barColor:"#444",
+                        animationSpeed:"1800",
+                        counterSpeed:"1800"
+                    });
+            },
+            eventClick : function( event,jsEvent){
+                if($(jsEvent.target).attr("class")&&$(jsEvent.target).attr("class").indexOf("del-rc")!=-1){
+                    $('#calendar').fullCalendar('removeEvents',function(obj){
+                        var delData=store.get("RcData");
+                        if(obj.name==event.name){
+                            for(var i=0;i<delData.length;i++){
+                                if(delData[i].name==event.name){
+                                    delData.splice(i,1);
+                                    break;
+                                }
+                            }
+                            store.set("RcData",delData);
+                            return true;
+                        }
+                    });
+                    for(var j=0;j<RC_Arr.length;j++){
+                        if(event.name==RC_Arr[j].name){
+                            RC_Arr.splice(j,1);
+                        }
+                    }
+                    console.log("删除成功");
+                }else{
+                    var data={
+                        name:event.name,
+                        title:event.title,
+                        rizhi:event.rizhi,
+                        start:event.start.format("YYYY-MM-DD HH:mm"),
+                        end:event.end?event.end.format("YYYY-MM-DD HH:mm"):event.start.format("YYYY-MM-DD HH:mm"),
+                        backgroundColor:event.backgroundColor,
+                        borderColor:event.borderColor,
+                        process:event.process,
+                        OrCreateing:event.OrCreateing,
+                        allDay:event.allDay,
+                        remindChecked:event.OrRemind?"checked":"",
+                        dayChecked:event.allDay?"checked":""
+                    };
+//                    编译已经创建的日程 （OrCreate=？？）
+                    RC_bianyi(data);
+                    RC_edit(data,event);
+                }
+            },
+            events:function(start,end,timezone,callback){
+                console.log("这是event的事件");
+                var startTime=new Date(start._d).toLocaleDateString();
+                var endTime=new Date(end._d).toLocaleDateString();
+                console.log(start.unix());
+                /* $.ajax({
+                    url: 'data.json',
+                    dataType: 'json',
+                    data: {
+                        start: startTime,
+                        end: endTime
+                    },
+                    success: function(doc) {
+                        var events = [];
+                        $(doc).each(function(i,v) {
+                            console.log(v.start,v.end)
+                            events.push(v);
+                        });
+                        callback(events);
+                    }
+                });*/
+                //这些数据都是模拟的本地加载 实际中按照ajax的请求渲染数据并把 RC_edit方法中的window.location.reload()去掉
+                var events =[];
+                var data=store.get("RcData")||[];
+                    for(var i=0;i<data.length;i++){
+                        var obj = {
+                            name:data[i].name,
+                            title:data[i].title,
+                            rizhi:data[i].rizhi,
+                            start:data[i].start,
+                            end:data[i].end?data[i].end:data[i].start,
+                            backgroundColor:data[i].backgroundColor,
+                            borderColor:data[i].borderColor,
+                            OrCreateing:data[i].OrCreateing,
+                            process:data[i].process,
+                            OrRemind:data[i].OrRemind,
+                            allDay:data[i].allDay
+                        };
+                        events.push(obj);
+                        var searchName=obj.name;
+                         var flag = false;
+                         RC_Arr.forEach(function (v,i) {
+                         if(v.name==searchName){
+                             RC_Arr.splice(i,1,obj);
+                             flag = true;
+                             }
+                         });
+
+                         if(!flag){
+                         RC_Arr.push(obj);
+                         }
+                    }
+                    callback(events);
+            },
+            eventResize : function( event, dayDelta, revertFunc ) {
+                RC_updata(event);
+            },
+            eventDrop : function( event, dayDelta, revertFunc ){
+                RC_updata(event);
+            }
+        });
+/*预编译模板*/
+        function RC_bianyi(json) {
+            var source   =  $("#rctpl").html();
+            var template = Handlebars.compile(source);
+            //模拟json数据
+            var context =json;
+            json.end=RC_dayChange(json.start,json.end,"-1");
+            var html = template(context);
+            $("#showtpl").html(html);
+            $("#richengModal").modal("show");
+            $(".cancel-rc").click(function () {
+                $("#richengModal").modal("hide");
+            });
+//            初始化插件
+            $(".rcColor").minicolors({
+                control: $(this).attr('data-control') || 'hue',
+                defaultValue: $(this).attr('data-defaultValue') || '',
+                inline: $(this).attr('data-inline') === 'true',
+                letterCase: $(this).attr('data-letterCase') || 'lowercase',
+                opacity: $(this).attr('data-opacity'),
+                position: $(this).attr('data-position') || 'bottom left',
+                change: function(hex, opacity) {
+                    if( !hex ) return;
+                    if( opacity ) hex += ', ' + opacity;
+                    try {
+                    } catch(e) {}
+                },
+                theme: 'bootstrap'
+            });
+            $('.date-picker').datetimepicker({
+                minView: "hour",
+                autoclose:true,
+                todayBtn: true,
+                pickerPosition: "center",
+                todayHighlight: true,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1,
+                bootcssVer:2,
+                language:'zh'
+            });
+        }
+/*编辑模板数据*/
+        function RC_edit(whoRc,event){
+            $(".submit-rc,.save-rc").on("click",function(e){
+                e.stopPropagation();
+                var obj={};
+                var titleValue=$("#biaoti").val().trim();
+                var rizhiValue=$("#rizhi").val().trim();
+                var timeStartValue=$("#kaishi").val().trim();
+                var timeEndValue=$("#jieshu").val().trim();
+                var rcBj=$("#hidden-input").val().trim();
+                var rcprocess=$("#jindu").val().trim();
+                var OrRemind=$("#tx-rc").prop('checked');
+                var orAllDay=$("#tx-qt").prop("checked");
+                if(orAllDay){
+                    var timeS=timeEndValue.split(" ")[0]+" 00:00";
+                    var timeE=timeStartValue.split(" ")[0]+" 00:00";
+                    timeEndValue=timeS;
+                    timeStartValue=timeE;
+                }else{
+                    timeEndValue = RC_dayChange(timeStartValue,timeEndValue);
+                }
+                timeEndValue = RC_dayChange(timeStartValue,timeEndValue,"1");
+                var flag=(titleValue==""||titleValue==null||titleValue==undefined
+                ||rizhiValue==""||rizhiValue==null||rizhiValue==undefined
+                ||timeStartValue==""||timeStartValue==null||timeStartValue==undefined
+                ||timeEndValue==""||timeEndValue==null||timeEndValue==undefined);
+                if(flag){
+                    alert("不能为空");
+                    return false;
+                }else{
+                    obj.title=titleValue;
+                    obj.rizhi=rizhiValue;
+                    obj.start=timeStartValue;
+                    obj.end=timeEndValue;
+                    obj.backgroundColor=rcBj;
+                    obj.borderColor=rcBj;
+                    obj.process=rcprocess;
+                    obj.OrRemind=OrRemind;
+                    obj.allDay=orAllDay;
+                    //ajax 提交obj (模拟存到本地数据库)
+                    var mixObj1=$.extend({},whoRc,obj);
+                   if(mixObj1.OrCreateing==true){
+                         mixObj1.OrCreateing=false;
+                        $('#calendar').fullCalendar('renderEvent',mixObj1,true);  //核心的更新代码
+                        RC_Arr.push(mixObj1);
+                    }else{
+                        if(event){
+                            var mixObj2=$.extend({},event,mixObj1);
+                            var searchName=mixObj2.name;
+                            RC_Arr.forEach(function(v,i){
+                               if(v.name==searchName){
+                                   RC_Arr.splice(i,1,mixObj1);
+                               }
+                            });
+                            $('#calendar').fullCalendar('updateEvent',mixObj2);
+                        }
+                    }
+                    store.set("RcData",RC_Arr);
+                    $("#richengModal").modal("hide");
+                    window.location.reload();
+                }
+            });
+        }
+/*转换日期 day-1*/
+        function RC_dayChange(start,end,flag) {
+            if(start === end){
+                return end;
+            }
+            var DATE=new Date(end);
+            flag=="1"?DATE.setDate(DATE.getDate()+1):DATE.setDate(DATE.getDate()-1);
+            return DATE.trans('yyyy-MM-dd hh:mm');
+        }
+/*动态查询对应的日程并且更新时间*/
+        function RC_updata(event){
+            var data=store.get("RcData");
+            var searchName=event.name;
+           data.forEach(function(v,i){
+                if(v.name==searchName){
+                    v.start=event.start.format('YYYY-MM-DD HH:mm');
+                    v.end=event.end?event.end.format('YYYY-MM-DD HH:mm'):v.start;
+                }
+            });
+            RC_Arr.forEach(function(v,i){
+                if(v.name==searchName){
+                    v.start=event.start.format('YYYY-MM-DD HH:mm');
+                    v.end=event.end?event.end.format('YYYY-MM-DD HH:mm'):v.start;
+                }
+            });
+            store.set("RcData",data);
+        }
+    });
+</script>
+</body>
+</html>

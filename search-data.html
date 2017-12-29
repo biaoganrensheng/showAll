@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查询数据</title>
+    <meta name="keywords" content="艋顺,艋顺科技，艋顺科技公司">
+    <meta name="description" content="艋顺,艋顺科技，艋顺科技公司">
+    <link rel="shortcut icon" href="images/logo.ico" type="images/x-icon" />
+    <link rel="icon" href="images/logo.ico" type="images/x-icon" />
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <!--LAYER TREE-->
+    <link rel="stylesheet" href="css/plugins/layerUI/layui.css">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .popover-content{
+            padding:0;
+        }
+        body .layui-tree-skin-define_bule .layui-tree-branch{color: #EDCA50;}
+        .popover.fade.bottom.in{
+            border:none;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="panel-group"  role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title" data-toggle="collapse" data-target="#zjjg" aria-expanded="true" aria-controls="collapseOne">
+                                <a role="button">
+                                    组 织 结 构
+                                </a>
+                                <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                            </h4>
+                        </div>
+                        <div id="zjjg" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <ul id="demo"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9 ">
+                <div class="row search-condition">
+                    <div class="panel-group"  role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title" data-toggle="collapse" data-target="#cxtj" aria-expanded="true" aria-controls="collapseOne">
+                                    <a role="button">
+                                        查 询 条 件
+                                    </a>
+                                    <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                                </h4>
+                            </div>
+                            <div id="cxtj" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="row"style="padding:0 10px;padding-right: 30px;">
+                                            <!--要做js控制-->
+                                            <form class="form-horizontal search-condition-form">
+                                                <!--配置文本框-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-12">
+                                            <div class="col-md-9 col-md-offset-2 col-sm-12" style="padding-left: 0;">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <button class="btn btn-primary btn-md" >
+                                                        <span class="fa fa-search"></span>
+                                                        查询数据
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <a class="btn btn-success btn-md">
+                                                        <span class="fa fa-cloud-download"></span>
+                                                        导出数据
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row search-result">
+                    <div class="panel-group"  role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title" data-toggle="collapse" data-target="#cxjg" aria-expanded="true" aria-controls="collapseOne">
+                                    <a role="button">
+                                        查 询 结 果
+                                    </a>
+                                    <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                                </h4>
+                            </div>
+                            <div id="cxjg" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <table class="table table-striped table-bordered table-hover dataTables-result">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>用户名</th>
+                                            <th>性别</th>
+                                            <th>手机</th>
+                                            <th>身份证号</th>
+                                            <th>邮箱</th>
+                                            <th>地址</th>
+                                            <th>加入时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                             <tr>
+                                                <td>
+                                                    1333
+                                                </td>
+                                                <td>
+                                                    金少
+                                                </td>
+                                                <td>男</td>
+                                                <td>16964554564</td>
+                                                <td>16454646546544545466</td>
+                                                <td>16964554564@qq.com</td>
+                                                <td>杭州市西湖区骆家庄</td>
+                                                <td>2016-12-22</td>
+                                            </tr>
+                                             <tr>
+                                                 <td>
+                                                     13
+                                                 </td>
+                                                 <td>
+                                                     金少
+                                                 </td>
+                                                 <td>男</td>
+                                                 <td>16964554564</td>
+                                                 <td>16454646546544545466</td>
+                                                 <td>16964554564@qq.com</td>
+                                                 <td>杭州市西湖区骆家庄</td>
+                                                 <td>2016-12-22</td>
+                                             </tr>
+                                             <tr>
+                                                 <td>
+                                                     13
+                                                 </td>
+                                                 <td>
+                                                     金少
+                                                 </td>
+                                                 <td>男</td>
+                                                 <td>16964554564</td>
+                                                 <td>16454646546544545466</td>
+                                                 <td>16964554564@qq.com</td>
+                                                 <td>杭州市西湖区骆家庄</td>
+                                                 <td>2016-12-22</td>
+                                             </tr>
+                                             <tr>
+                                                 <td>
+                                                     13
+                                                 </td>
+                                                 <td>
+                                                     金少
+                                                 </td>
+                                                 <td>男</td>
+                                                 <td>16964554564</td>
+                                                 <td>16454646546544545466</td>
+                                                 <td>16964554564@qq.com</td>
+                                                 <td>杭州市西湖区骆家庄</td>
+                                                 <td>2016-12-22</td>
+                                             </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 全局js -->
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<!-- Data Tables插件的js -->
+<script src="js/plugins/dataTables/jquery.dataTables.min2.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script src="js/plugins/layerUI/layui.js"></script>
+<script src="http://apps.bdimg.com/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
+<!--input 的模板-->
+<script id="input-template" type="text/x-handlebars-template">
+    {{#each configInput}}
+    <div class="col-md-4 col-sm-6">
+        <div class="form-group has-default has-feedback search-input">
+            <div class="col-sm-3 text-center">
+                <label for="test1" class="control-label">{{label}}</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" class="form-control btn_user" placeholder="{{inputPlaceholder}}" id="test1" name="btn_user">
+                <span class="glyphicon {{icon}} form-control-feedback"></span>
+            </div>
+            {{#with defineTarget}}
+            <div class="col-sm-4">
+                <a class="showData btn btn-block btn-info {{sign.[0]}}" data-sel="{{sign.[2]}}">{{sign.[1]}}</a>
+            </div>
+            {{/with}}
+        </div>
+    </div>
+    {{/each}}
+</script>
+<!--popover 的模板-->
+<script id="popover-template" type="text/x-handlebars-template">
+    {{#each this}}
+        {{#compare id}}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" style="font-weight: normal;">
+                {{title}}
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row" style="padding-left:15px;">
+                <div class="col-md-10 col-sm-12" style="padding-left: 0">
+                    <form class="form-horizontal clearfix">
+                        {{#each inputConfig}}
+                        <div class="col-sm-6">
+                            <div class="form-group has-default has-feedback">
+                                <div class="col-sm-4 text-center">
+                                    <label for="{{name}}" class="control-label">{{label}}</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control btn_user" placeholder="{{inputPlaceholder}}" id="{{name}}"
+                                           style="padding-right: 0;">
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </form>
+                </div>
+                <div class="col-md-2 col-sm-12" style="margin-bottom:10px;padding-left: 0;">
+                    <a class="btn btn-block btn-primary">查&nbsp;&nbsp;&nbsp;&nbsp;询</a>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+                {{#each btnConfig}}
+                <div class="col-md-2 col-sm-4">
+                    <a class="btn btn-block {{class-color}}" style="margin-bottom:4px;">{{content}}</a>
+                </div>
+                {{/each}}
+            </div>
+            <div>
+                <table class="table table-striped table-bordered table-hover dataTables-detail">
+                    <thead>
+                    <tr>
+                        {{#each defineThead}}
+                        <th>{{this}}</th>
+                        {{/each}}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each defineBody}}
+                    <tr>
+                        <td>
+                            {{id}}
+                        </td>
+                        <td>
+                            {{userName}}
+                        </td>
+                        <td>{{tel}}</td>
+                        <td>{{sex}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                查询结果最多显示前{{showNum}}条
+            </div>
+        </div>
+    </div>
+        {{/compare }}
+    {{/each}}
+</script>
+<script>
+    //模板函数
+    function sourInput(){
+        var sourceInput = $("#input-template").html();
+        var templateInput = Handlebars.compile(sourceInput);
+        var contextInput = {
+            'configInput':[
+                {
+                    "label":"姓名",
+                    "inputPlaceholder":"请输入姓名",
+                    "icon":"glyphicon-envelope",
+                    "defineTarget":{
+                        "sign":["flagShow","定位用户","dwyh"]
+                    }
+                },
+                {
+                    "label":"密码",
+                    "inputPlaceholder":"请输入姓名",
+                    "icon":"glyphicon-envelope",
+                    "defineTarget":{
+                        "sign":["flagHide"]
+                    }
+                },
+                {
+                    "label":"年龄",
+                    "inputPlaceholder":"请输入姓名",
+                    "icon":"glyphicon-envelope",
+                    "defineTarget":{
+                        "sign":["flagShow","定位年龄","dwnl"]
+                    }
+                },
+                {
+                    "label":"密码",
+                    "inputPlaceholder":"请输入姓名",
+                    "icon":"glyphicon-envelope",
+                    "defineTarget":{
+                        "sign":["flagShow","定位身份","dwsf"]
+                    }
+                },
+                {
+                    "label":"年龄",
+                    "inputPlaceholder":"请输入姓名",
+                    "icon":"glyphicon-envelope",
+                    "defineTarget":{
+                        "sign":["flagShow","定位地址","dwdz"]
+                    }
+                }
+            ]
+        };
+        var htmlInput    = templateInput(contextInput);
+        $(".search-condition-form").html(htmlInput);
+    }
+    function sourPopover(val) {
+        var sourcePopover   = $("#popover-template").html();
+        var templatePopover = Handlebars.compile(sourcePopover);
+            Handlebars.registerHelper("compare",function(id,options){
+                if(val==id){
+                    //满足添加继续执行
+                    return options.fn(this);
+                }
+            });
+        var contextPopover = [
+                {
+                    'index':0,
+                    "id":"dwyh",
+                    "title":'定位用户',
+                    "showNum":80,
+                    "inputConfig":[
+                        {
+                            "label":"姓名1",
+                            "name":"name1",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名2",
+                            "name":"name2",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名3",
+                            "name":"name3",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名4",
+                            "name":"name4",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名5",
+                            "name":"name5",
+                            "inputPlaceholder":"请输入姓名"
+                        }
+                    ],
+                    "btnConfig":[
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"追选","class-color":"btn-warning"},
+                        {"content":"清空","class-color":"btn-danger"},
+                    ],
+                    "defineThead":["ID","用户名","手机","性别"],
+                    "defineBody":[
+                        {
+                            "id":"101",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"102",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"103",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"104",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"105",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"106",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        }
+                    ]
+                },
+                {
+                    'index':1,
+                    "id":"dwnl",
+                    "title":'定位年龄',
+                    "showNum":80,
+                    "inputConfig":[
+                        {
+                            "label":"姓名1",
+                            "name":"name1",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名2",
+                            "name":"name2",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名3",
+                            "name":"name3",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名4",
+                            "name":"name4",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名5",
+                            "name":"name5",
+                            "inputPlaceholder":"请输入姓名"
+                        }
+                    ],
+                    "btnConfig":[
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"追选","class-color":"btn-warning"},
+                        {"content":"清空","class-color":"btn-danger"},
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"选择","class-color":"btn-success"}
+                    ],
+                    "defineThead":["ID","用户名","手机","性别"],
+                    "defineBody":[
+                        {
+                            "id":"101",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"102",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"103",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"104",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"105",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"106",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        }
+                    ]
+                },
+                {
+                    'index':2,
+                    "id":"dwsf",
+                    "title":'定位身份',
+                    "showNum":80,
+                    "inputConfig":[
+                        {
+                            "label":"姓名1",
+                            "name":"name1",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名2",
+                            "name":"name2",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名3",
+                            "name":"name3",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名4",
+                            "name":"name4",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名5",
+                            "name":"name5",
+                            "inputPlaceholder":"请输入姓名"
+                        }
+                    ],
+                    "btnConfig":[
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"追选","class-color":"btn-warning"},
+                        {"content":"清空","class-color":"btn-danger"},
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"选择","class-color":"btn-success"}
+                    ],
+                    "defineThead":["ID","用户名","手机","性别"],
+                    "defineBody":[
+                        {
+                            "id":"101",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"102",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"103",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"104",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"105",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"106",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        }
+                    ]
+                },
+                {
+                    'index':3,
+                    "id":"dwdz",
+                    "title":'定位地址',
+                    "showNum":80,
+                    "inputConfig":[
+                        {
+                            "label":"姓名1",
+                            "name":"name1",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名2",
+                            "name":"name2",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名3",
+                            "name":"name3",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名4",
+                            "name":"name4",
+                            "inputPlaceholder":"请输入姓名"
+                        },
+                        {
+                            "label":"姓名5",
+                            "name":"name5",
+                            "inputPlaceholder":"请输入姓名"
+                        }
+                    ],
+                    "btnConfig":[
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"追选","class-color":"btn-warning"},
+                        {"content":"清空","class-color":"btn-danger"},
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"选择","class-color":"btn-success"},
+                        {"content":"选择","class-color":"btn-success"}
+                    ],
+                    "defineThead":["ID","用户名","手机","性别"],
+                    "defineBody":[
+                        {
+                            "id":"101",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"102",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"103",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"104",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"105",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        },
+                        {
+                            "id":"106",
+                            "userName":"张三",
+                            "tel":"15967445264",
+                            "sex":"男"
+                        }
+                    ]
+                }
+        ];
+        var htmlPopover    = templatePopover(contextPopover);
+
+        return htmlPopover;
+    }
+</script>
+<script>
+    $(document).ready(function(){
+//  初始化操作
+    // 1.layer tree
+        layui.use('tree', function(){
+            var tree = layui.tree({
+                elem: '#demo' //指定元素
+                //,check: 'checkbox' //勾选风格
+                ,skin: 'define_bule' //设定皮肤
+                //,target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
+                ,drag: true
+                ,click: function(item){ //点击节点回调
+                    console.log(item)
+                }
+                ,nodes: [ //节点
+                    {
+                        name: '常用文件夹'
+                        ,id: 1
+                        ,alias: 'changyong'
+                        ,children: [
+                        {
+                            name: '所有未读'
+                            ,id: 11
+                            //,href: 'http://www.layui.com/'
+                            ,alias: 'weidu'
+                        }, {
+                            name: '置顶邮件'
+                            ,id: 12
+                        }, {
+                            name: '标签邮件'
+                            ,id: 13
+                        }
+                    ]
+                    }, {
+                        name: '我的邮箱'
+                        ,id: 2
+                        ,spread: false
+                        ,children: [
+                            {
+                                name: 'QQ邮箱'
+                                ,id: 21
+                                ,spread: true
+                                ,children: [
+                                {
+                                    name: '收件箱'
+                                    ,id: 211
+                                    ,children: [
+                                    {
+                                        name: '所有未读'
+                                        ,id: 2111
+                                    }, {
+                                        name: '置顶邮件'
+                                        ,id: 2112
+                                    }, {
+                                        name: '标签邮件'
+                                        ,id: 2113
+                                    }
+                                ]
+                                }, {
+                                    name: '已发出的邮件'
+                                    ,id: 212
+                                }, {
+                                    name: '垃圾邮件'
+                                    ,id: 213
+                                }
+                            ]
+                            }, {
+                                name: '阿里云邮'
+                                ,id: 22
+                                ,children: [
+                                    {
+                                        name: '收件箱'
+                                        ,id: 221
+                                    }, {
+                                        name: '已发出的邮件'
+                                        ,id: 222
+                                    }, {
+                                        name: '垃圾邮件'
+                                        ,id: 223
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            });
+        });
+    // 2.初始化bootstrap popover  current 判断是否为点击的是同一个弹框
+        var current=-1;
+        $("[data-toggle='popover']").popover();
+    //3.初始化datatable
+        $.extend( $.fn.dataTable.defaults, {
+            searching: false
+        } );
+        myDataTable=$('.dataTables-result').DataTable({
+            "aoColumnDefs":[
+                { "bSortable": false, "aTargets": [0,4] }
+            ]});
+    // 4.初始化模板
+        sourInput();
+
+    function tplInit(dom,num){
+        var htmlPopover=sourPopover(num);
+        dom.popover({
+            trigger:'manual',//manual 触发方式
+            placement : 'bottom',
+            html: 'true',
+            content : htmlPopover, //这里可以直接写字符串，也可以 是一个函数，该函数返回一个字符串；
+            animation: true
+        });
+        $("body").on("click",".popover",function(e){
+            e.stopPropagation();
+        });
+        $(document).click(function(){
+            $(".showData").removeClass("flag");
+            $('.popover').hide();
+        });
+    }
+    $(".showData").each(function(i,v){
+            var target=$(v);
+            target.on("click",function (e) {
+                e.stopPropagation();
+                tplInit($(this),$(this).data("sel"));
+                if(current==i){
+                    if($(this).hasClass("flag")){
+                        $(".test").popover("hide");
+                        $(this).removeClass("flag").popover("hide");
+                    }else{
+                        $(this).addClass("flag").popover("show");
+                    }
+                }else{
+                    if($(".popover").length){
+                        $(".popover").prev().removeClass("flag").popover("hide");
+                    }
+                    if($(this).hasClass("flag")){
+                        $(".test").popover("hide");
+                        $(this).removeClass("flag").popover("hide");
+                    }else{
+                        $(this).addClass("flag").popover("show");
+                    }
+                    current=i;
+                }
+            })
+        });
+    $(".search-input").each(function (index, item) {
+            var hideDom=$(item).find(".flagHide").parent();
+            var pros = $(item).find(".flagShow");
+            hideDom.prev().attr("class", "col-sm-9").end().hide();
+            if (pros.length) {
+                $(this).children("div:last").attr("class", "col-sm-4");
+                $(this).children("div:eq(1)").attr("class", "col-sm-5");
+            }
+        })
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+       var htmlPopover=sourPopover(1);
+        $(".showData").each(function(i,v){
+            var target=$(v);
+            target.popover({
+                trigger:'manual',//manual 触发方式
+                placement : 'bottom',
+                html: 'true',
+                content : htmlPopover, //这里可以直接写字符串，也可以 是一个函数，该函数返回一个字符串；
+                animation: true
+            }).on("click",function(e){
+                e.stopPropagation();
+                if(current==i){
+                    if($(this).hasClass("flag")){
+                        $(".test").popover("hide");
+                        $(this).removeClass("flag").popover("hide");
+                    }else{
+                        $(this).addClass("flag").popover("show");
+                    }
+                }else{
+                    if($(".popover").length){
+                        $(".popover").prev().removeClass("flag").popover("hide");
+                    }
+                    if($(this).hasClass("flag")){
+                        $(".test").popover("hide");
+                        $(this).removeClass("flag").popover("hide");
+                    }else{
+                        $(this).addClass("flag").popover("show");
+                    }
+                    current=i;
+                }
+            })
+        });
+        $("body").on("click",".popover",function(e){
+            e.stopPropagation();
+        })
+        $(document).click(function(){
+            $(".test").removeClass("flag");
+            $('.popover').hide();
+        })
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

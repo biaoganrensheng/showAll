@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>艋顺科技</title>
+    <meta name="keywords" content="艋顺,艋顺科技，艋顺科技公司">
+    <meta name="description" content="艋顺,艋顺科技，艋顺科技公司">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--网页图标-->
+    <link rel="shortcut icon" href="images/logo.ico" type="images/x-icon" />
+    <link rel="icon" href="images/logo.ico" type="images/x-icon" />
+    <!--bootstrapt样式文件-->
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="stylesheet" href="BTN/component.css">
+    <!--字体的样式文件-->
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!--网页图标-->
+    <!--定义动画的文件-->
+    <link href="css/animate.css" rel="stylesheet">
+    <!--后台主题的框架css-->
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <!--重写的css-->
+    <link rel="stylesheet" href="css/me.css">
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<!--全部内容都在wrapper 容器内-->
+    <div id="wrapper">
+            <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close">
+                <i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs" style="font-size:20px;">
+                                        <i class="fa fa-area-chart"></i>
+                                        <strong class="font-bold">犬夜叉</strong>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            犬夜叉
+                        </div>
+                    </li>
+                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                        <span class="ng-scope">分类</span>
+                    </li>
+                    <li class="text-flag">
+                        <a class="J_menuItem" href="none_show.html" data-iframe-btn="none_show" id="pageMain_a">
+                            <i class="fa fa-home"></i>
+                            <span class="nav-label nav-parent" id="pageMain">主页</span>
+                        </a>
+                    </li>
+                    <!--自己添加-->
+                    <li class="text-flag">
+                        <a href="#">
+                            <i class="fa fa fa-user"></i>
+                            <span class="nav-label nav-parent">用户管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <!--二级目录结构-->
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="user_list.html" data-iframe-btn="user_list">用户列表</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="text-flag">
+                        <a href="#">
+                            <i class="fa fa fa-user"></i>
+                            <span class="nav-label nav-parent">我的测试1</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <!--二级目录结构-->
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="fullcendar/fullcandar2.html" data-iframe-btn="if_cendar">fullcendar</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="gantt/jQueryGantt/gantt.html" data-iframe-btn="if_gantt">gantt</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--自己添加-->
+                    <li class="text-flag">
+                        <a href="#">
+                            <i class="fa fa fa-bar-chart-o"></i>
+                            <span class="nav-label nav-parent">项目管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <!--二级目录结构-->
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="inputTplMore.html" data-iframe-btn="if_more">多列框</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="add_user.html" data-iframe-btn="if_add">添加用户</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="btn_list.html" data-iframe-btn="if_list">用户列表</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="inputTplSingle.html" data-iframe-btn="if_single">单列框</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="line dk"></li>
+                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                        <span class="ng-scope">分类</span>
+                    </li>
+                    <li class="text-flag">
+                        <a href="#">
+                            <i class="fa fa-edit"></i>
+                            <span class="nav-label nav-parent">角色类型</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <!--二级目录结构-->
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="manager.html" data-iframe-btn="if_manger">鹰眼</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="search-data.html" data-iframe-btn="if_search">查询数据</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-parent">更多文件<span class="fa arrow"></span></a>
+                                <!--三级目录结构-->
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a class="J_menuItem" href="showCompany.html" data-iframe-btn="if_company">公司</a>
+                                    </li>
+                                    <li>
+                                        <a class="J_menuItem" href="showMap.html" data-iframe-btn="if_map">地图</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+            <div style="position:fixed;bottom:20px;left:0px;width:220px;text-align: center;">
+                <button class="btn btn-5 btn-5b icon-remove"><span>退出</span></button>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <!--右侧悬浮导航条-->
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0" id="set_color" data-color="">
+                    <div class="navbar-header navbar_define">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-info navbar-text" href="#">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <!--面包线导航-->
+                       <!-- <ol class="breadcrumb pull-left">
+                            <li>主页</li>
+                        </ol>-->
+                        <div id="wizard">
+                            <ol class="bwizard-steps clearfix clickable">
+                                <li style="display: none;"></li>
+                                <li  class="active">主页</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="nav-gd pull-right">
+                        信息管理系统
+                    </div>
+                </nav>
+                <div class="width_js">
+                <!--可关闭的按钮-->
+                    <div class="tab_box">
+
+                    </div>
+                </div>
+            </div>
+            <!--右侧切换内容区域-->
+            <div class="row J_mainContent" id="content-main">
+
+            </div>
+        </div>
+        <!--右侧部分结束-->
+        <div class="set">
+            <a class="animated bounceInUp set_color">
+                <i class="fa fa-wrench"></i>
+            </a>
+        </div>
+        <div class="set_skin">
+            <i class="fa fa-hand-o-right hand_close fa-lg"></i>
+            <ul id="set_skin_box" class="list-unstyled clearfix J_setSkins" data-set='{"show_items":3,"define_items":["#fba","#afc","#fac"],"define_title":["淡粉","淡绿","未知"]}'>
+                <h2 class='control-sidebar-heading no-margin'>Skins</h2>
+            </ul>
+        </div>
+    </div>
+
+<!-- 全局js -->
+<!--jquery依赖文件-->
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<!--bootstrapt js文件-->
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<!--bootstrapt自定义手风琴菜单-->
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<!--滚动条插件-->
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!--web弹层插件-->
+<script src="js/public_alert.js"></script>
+<!-- 自定义js -->
+<script src="js/hAdmin.js?v=4.1.0"></script>
+<script src="js/set_skins.js"></script>
+<!-- 第三方插件 -->
+<!--页面加载进度条插件-->
+<script>
+         var add=0,  //btn按钮的累加
+         btn_width=0,//记录btn按钮的width
+         btnsArr=[],//记录按钮的数组用于向导航添加
+         btn_tmp_width=0,//声明当前按钮的长度值
+         Gwidth=$(".width_js").width();//初始化按钮导航的长度
+         changeTab('showMap.html','none_show');
+    $("#side-menu .J_menuItem").each(function(i,v){
+        var that=$(this);
+        $(v).on("click",function (e) {
+            e.preventDefault();
+            arr_btn=[];//去重按钮的数组
+            var target=search(that);//面包屑导航的逻辑
+            var showBiaoQian=target[target.length-1];//新增的show标签
+            var index=that.parents("ul").size();
+            var navTitle="";
+            for(var i=0;i<index;i++){
+                navTitle+='<li>'+target[i]+'</li>'
+            }
+// 按钮去重设置
+            $(".tab_box button").each(function (i,v) {
+                var btn_me=$(this);
+                var btn_name=find_tab(btn_me);
+                arr_btn.push(btn_name);
+            });
+            if(that.text().trim()=="主页"){//主页的展示
+                var me_href=that.attr("href");
+                var href_flag=that.attr("data-iframe-btn");
+                changeTab(me_href,href_flag);
+                $(".bwizard-steps").html('<li>主页</li>');
+                biaoqian(showBiaoQian);
+            }else{
+                var me_href=that.attr("href");//取到点击nav的href属性
+                var href_flag=that.attr("data-iframe-btn");
+                var str2="";
+                $(".width_js").animate({//改变btn导航的高度
+                    'height':'50px',
+                    'opacity':'1'
+                },200);
+// btn 按钮导航的控制
+                if(arr_btn.indexOf(href_flag)==-1){
+                    if(btn_width<Gwidth){
+                        ++add;
+                        str2+='<button class="btn btn-info btn-md btn-delcommon_style btn_js'+add+" "+href_flag+'">'
+                            +'<b class="btn-delcommon_sel">'+that.text()+'</b>'
+                            +'<span class="glyphicon glyphicon-remove btn-delcommon_span"></span>'
+                            +'<input type="hidden" value="'+navTitle+'"/>'
+                            +'</button>';
+                        btnsArr.push(str2);
+                        arr_btn.push(href_flag);
+                        $(".tab_box").append(str2);
+                        btn_width+=parseFloat($(".btn_js"+add).css("width"))+6;
+                        btn_tmp_width = parseFloat($(".btn_js"+add).css("width"))+6;
+                        $(".tab_box").css({"width":Gwidth,"overflow":"hidden","white-space":"nowrap"});
+                    }
+                    if(btn_width>Gwidth){
+                        btnsArr.splice(btnsArr.length-1,1);
+                        var str_3=btnsArr.join("");
+                        $(".tab_box").html(str_3);
+                        arr_btn.splice(arr_btn.length-1, 1);
+                        btn_width= btn_width - btn_tmp_width;
+                        btn_tmp_width = 0;
+                        ms.alert("请关闭多余的标签页",0,"",4);
+                    }else{
+                        changeTab(me_href,href_flag);//在极值范围内还可以点击显示iframe
+                        $(".bwizard-steps").html(navTitle);
+                        biaoqian(showBiaoQian);
+                    }
+                }else{
+                    changeTab(me_href,href_flag);//按钮导航不存在也可以点击切换展示（点击了相同的list）
+                    $(".bwizard-steps").html(navTitle);
+                    biaoqian(showBiaoQian);
+                }
+            }
+        })
+    });
+//   查找父级元素
+       function search(dom){
+    var data=[];
+    var dom_text=dom.text();
+    var par = dom.parents("ul");
+    for(var i=0;i<par.length-1;i++){
+       data.push($(par[i]).prev("a").text().trim());
+    }
+    data.reverse().push(dom_text);
+   return data;
+}
+//查找tab对应的iframe
+      function find_tab(obj){
+    var that=obj.attr("class");
+    var that_text=that.split(" ");
+    var that_flag=that_text[that_text.length-1];
+    return that_flag;
+}
+//iframe 展示
+      function show_tab(index){
+     $(".tab_item").css("display","none");
+     $("."+index).show();
+ }
+//iframe 隐藏
+     function hide_tab(tab) {
+    $("#content-main ."+tab).css("display","none");
+}
+//iframe 标签切换
+    function changeTab(me_href,href_flag){
+        var isHave = false;
+        for(var i=0;i<$(".tab_item").length;i++){
+            var iframe = $(".tab_item")[i].outerHTML;
+            if(iframe.indexOf(href_flag) != -1){
+                isHave = true;
+                break;
+            }
+        }
+        if(!isHave){
+            var tab_str="";
+            tab_str+='<div class="tab_item '+href_flag+'">'
+                    +'<div class="click_me"></div>'
+                +'<iframe  width="100%" height="100%" src="'+me_href+'" frameborder="0">'
+                +'</iframe>'
+                +'</div>';
+            $("#content-main").append(tab_str);
+        }
+        show_tab(href_flag);
+    }
+//删除对应的btn
+   function del_btn(href) {
+          for(var i=0;i<btnsArr.length;i++){
+              if(btnsArr[i].indexOf(href)!=-1){
+                  btnsArr.splice(i,1);
+                  break;
+              }
+          }
+      }
+// 新增的标签样式切换
+ function biaoqian(dom){
+       $(".bwizard-steps li").removeClass("active");
+       $(".bwizard-steps li").each(function(i,v){
+         if($(v).text().trim()==dom){
+             $(v).addClass("active");
+         }
+     });
+ }
+//  导航tab切换
+    $(".tab_box").on("click","button",function(e){
+        e.stopPropagation();
+         var me=$(this);
+        var that_flag=find_tab(me);
+        var biaoQianText=$(this).text().trim();
+        show_tab(that_flag);
+        var navTitleThis = me.find("input[type='hidden']").val();
+        $(".bwizard-steps").html(navTitleThis);
+       biaoqian(biaoQianText);
+    });
+//  导航tab删除切换
+    $(".tab_box").on("click",".btn-delcommon_span",function(e){
+    e.stopPropagation();
+    var me=$(this).parent("button");
+    var cla = me.prop("class").split(" ");//获取选中button的所有class
+    var className = cla[cla.length-2].trim();//获取btn_js标识
+    var btns = me.parents("div.tab_box").find("button");
+    var index;//点击关闭按钮的索引
+    for(var i=0;i<btns.length;i++){
+    	cla = $(btns[i]).prop("class").split(" ");
+    	if(cla[cla.length-2].trim() == className){
+    		index = i;//留住点击按钮的下标
+    	}
+    }
+    if(index == btns.length-1){
+    	$(btns[index-1]).click();
+    }else if(index >= 0){
+    	$(btns[index+1]).click();
+    }
+    if(btns.length==1){
+    	$(".bwizard-steps").html('<li style="display: none;"></li><li class="active">主页</li>');
+        var me_href=$("#pageMain_a").attr("href");
+        var href_flag=$("#pageMain_a").attr("data-iframe-btn");
+        changeTab(me_href,href_flag);
+        $(".width_js").css("height","0px");
+    }
+    btn_width=btn_width-(parseFloat(me.css("width"))+6);
+    me.remove();
+    var that_flag=find_tab(me);
+    var index2 = arr_btn.indexOf(that_flag);
+    if (index2 > -1) {
+        arr_btn.splice(index2, 1);
+    }
+    hide_tab(that_flag);
+    del_btn(that_flag);
+})
+</script>
+<!--定义皮肤的js-->
+<script>
+    set_Skins.init($(".J_setSkins"));
+</script>
+</body>
+</html>

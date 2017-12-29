@@ -1,0 +1,61 @@
+[{
+    "name": "浙江省",
+    "id": 1,
+    "spread": true,
+    "children": [{
+        "name": "杭州市",
+        "id": 11,
+        "url": "btn_list.html"
+    }, {
+        "name": "宁波市",
+        "id": 12,
+        "url": "http://map.baidu.com/"
+    }, {
+        "name": "绍兴市",
+        "id": 13,
+        "url": "2D_Map.html",
+        "parentUrl": "http://192.168.0.199:6080/arcgis/rest/services/test_lever10/MapServer"
+    }]
+}, {
+    "name": "内蒙古自治区",
+    "id": 2,
+    "spread": false,
+    "children": [{
+        "name": "锡林郭勒盟",
+        "id": 21,
+        "spread": true,
+        "children": [{
+            "name": "二连浩特",
+            "id": 211,
+            "children": [{
+                "name": "赛乌苏",
+                "id": 2111
+            }, {
+                "name": "恐龙基地",
+                "id": 2112
+            }, {
+                "name": "国门金街",
+                "id": 2113
+            }]
+        }, {
+            "name": "赛罕塔拉",
+            "id": 212
+        }, {
+            "name": "锡林浩特",
+            "id": 213
+        }]
+    }, {
+        "name": "乌盟",
+        "id": 22,
+        "children": [{
+            "name": "集宁市",
+            "id": 221
+        }, {
+            "name": "呼和浩特市",
+            "id": 222
+        }, {
+            "name": "包头市",
+            "id": 223
+        }]
+    }]
+}]

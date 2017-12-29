@@ -1,0 +1,175 @@
+@charset "utf-8";
+/* CSS Document */
+*{box-sizing: border-box}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video ,input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-color: grey;
+}
+ol, ul {
+  list-style: none;
+}
+img{
+  vertical-align: middle;
+}
+a:hover {color:#FF0000;}
+a{
+  text-decoration: none;
+  color:#555;
+}
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,select{ -webkit-appearance: none; }
+input{
+  outline: 0;
+  resize: none;
+  //border: none;
+  font-size:12px;
+}
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline:none;
+}
+select::-ms-expand{display:none;}
+
+/*适配不同屏幕下的电脑*/
+
+/*类的定义*/
+.clear(){
+  display:block;
+  content:"";
+  clear:both;
+  overflow: hidden;
+  zoom: 1;
+}
+.left(){
+  float:left;
+}
+.right(){
+  float:right;
+}
+//select和input的重置样式(兼容性)
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button { -webkit-appearance: none;border:none;}
+//body样式
+body{
+  font:14px "microsoft yahei",Arial,Helvetica,sans-serif,"新宋体","宋体";
+  color:#555;
+  margin:0;
+  table-layout:fixed;
+  word-break:break-all;
+  -webkit-font-smoothing: antialiased;
+}
+//定义圆角
+.border-radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+//圆角四角
+.border-radius-custom (@topleft: 5px, @topright: 5px, @bottomleft: 5px, @bottomright: 5px) {
+  -webkit-border-radius: @topleft @topright @bottomright @bottomleft;
+  -moz-border-radius: @topleft @topright @bottomright @bottomleft;
+  border-radius: @topleft @topright @bottomright @bottomleft;
+}
+//盒子阴影inset 0px 4px 5px rgba(255,255,255,0.4),
+.box-shadow(@x,@y,@blur,@blur2,@alpha){
+  -webkit-box-shadow:@x @y @blur @blur2 @alpha;
+  -moz-box-shadow:@x @y @blur @blur2 @alpha;
+  box-shadow:@x @y @blur @blur2 @alpha;
+}
+//transition动画
+.transition (@prop: all, @time: 1s, @ease: linear) {
+  -webkit-transition:@prop @time @ease;
+  -moz-transition:@prop @time @ease;
+  -o-transition:@prop @time @ease;
+  -ms-transition:@prop @time @ease;
+  transition:@prop @time @ease;
+}
+//transform 动画
+.transform (@rotate: 90deg, @scale: 1, @skew: 1deg, @translate: 10px) {
+  -webkit-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  -moz-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  -o-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  -ms-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+}
+//线性渐变
+.gradient (@origin: left, @start: #ffffff, @stop: #000000) {
+  background-color: @start;
+  background-image: -webkit-linear-gradient(@origin, @start, @stop);
+  background-image: -moz-linear-gradient(@origin, @start, @stop);
+  background-image: -o-linear-gradient(@origin, @start, @stop);
+  background-image: -ms-linear-gradient(@origin, @start, @stop);
+  background-image: linear-gradient(@origin, @start, @stop);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@start, endColorstr=@stop, GradientType='0');
+  //background: #00b7ea; /* Old browsers */
+  //background: -moz-linear-gradient(top, #00b7ea 0%, #009ec3 100%); /* FF3.6+ */
+  //background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00b7ea), color-stop(100%,#009ec3)); /* Chrome,Safari4+ */
+  //background: -webkit-linear-gradient(top, #00b7ea 0%,#009ec3 100%); /* Chrome10+,Safari5.1+ */
+  //background: -o-linear-gradient(top, #00b7ea 0%,#009ec3 100%); /* Opera 11.10+ */
+  //background: -ms-linear-gradient(top, #00b7ea 0%,#009ec3 100%); /* IE10+ */
+  //background: linear-gradient(top, #00b7ea 0%,#009ec3 100%); /* W3C */
+  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=0 );
+}
+//快速渐变
+.quick-gradient (@origin: left, @alpha: 0.2) {
+  background-image: -webkit-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+  background-image: -moz-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+  background-image: -o-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+  background-image: -ms-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+  background-image: linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+}
+//镜像
+.reflect (@length: 50%, @opacity: 0.2){
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(@length, transparent), to(rgba(255,255,255,@opacity)));
+}
+//颜色互补（base已经定义）
+@base1: #1B84E5;
+@complement1: spin(@base1, 180);
+@complement2: darken(spin(@base1, 180), 5%);
+@lighten1: lighten(@base1, 15%);
+@lighten2: lighten(@base1, 30%);
+//颜色微调
+@base2: #00b7ea;
+@lighter1: lighten(spin(@base2, 5), 10%);
+@lighter2: lighten(spin(@base2, 10), 20%);
+@darker1: darken(spin(@base2, -5), 10%);
+@darker2: darken(spin(@base2, -10), 20%);
+//透明度
+.opacity(@o1,@o2){
+  opacity: @o1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=@o2);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=@o2);
+}
+//ie8实现fixed
+//.ie8{
+//  _position: absolute;
+//  _clear: both;
+//  _top:expression(eval(document.compatMode &&
+//               document.compatMode=='CSS1Compat') ?
+//               documentElement.scrollTop
+//               +(documentElement.clientHeight-this.clientHeight) - 1
+//               : document.body.scrollTop
+//               +(document.body.clientHeight-this.clientHeight) - 1);
+//}
+//rgba的兼容代码
+.rgb_tm(@color){
+  background:transparent;
+  zoom: 1;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=@color,endColorstr=@color)
+}
