@@ -42,13 +42,13 @@
             color_title:["light-blue","light-black","purple","green","red","yellow","light2-blue","black_light","purple","green","red","yellow"],//颜色的title
             define_items:[],//自定义的列表
             define_title:[]//自定义的title
-        }
+        };
         $.extend(this.settings,this.getsettings());
         this.getsettings();
         this.newitems();
         this.changeBj();
         this.show_others();
-    }
+    };
     set_Skins.prototype={
         constructor:set_Skins,
         getsettings:function () {//获得配置的参数
@@ -81,7 +81,7 @@
                        + "<p class='text-center no-margin skins_p'>"+def_title_arr[i]+"</p>"
                        +"</li>";
                     this.item.append(str);
-                    this.oppositeColor(def_arr[i])
+                    this.oppositeColor(def_arr[i]);
                     this.item.find(".skins_li:last").find(".skins_public").css("background",def_arr[i]);
                 }
                 $(".skins_li").css({'width':amount,'padding':'5px'});
@@ -96,6 +96,7 @@
                 $("#set_color").parent().removeClass("border-bottom");
                 $(".breadcrumb li").css("color",m4.oppositeColor(col));
                 $("#side-menu > li.active").css("border-left-color",col);
+                $(".bwizard-steps").css("background",col);
             })
         },
         oppositeColor:function (a) {//颜色取反
@@ -120,7 +121,7 @@
             var m5=this;
             $(".tab_box").on("click",".btn-delcommon_span",function(){
                 m5.succ_skins();
-            })
+            });
             $("#side-menu li").on("click",function(){
                 m5.succ_skins();
             })
@@ -168,6 +169,6 @@
         items.each(function () {
             new that($(this));
         })
-    }
+    };
     window['set_Skins']=set_Skins;
 })(jQuery,document,window);

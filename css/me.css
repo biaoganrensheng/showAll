@@ -216,3 +216,13 @@
 #wrapper .nav > li > a:hover {
   background: none;
 }
+body.fixed-sidebar.mini-navbar .sign-out-btn{
+  width:70px !important;
+}
+body.fixed-sidebar.mini-navbar .sign-out-btn span{
+  margin-left:-32px;
+}
+body.fixed-sidebar.mini-navbar .icon-remove{
+  width:60px !important;
+}
+
