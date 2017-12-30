@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择角色</title>
+    <meta name="keywords" content="艋顺,艋顺科技，艋顺科技公司">
+    <meta name="description" content="艋顺,艋顺科技，艋顺科技公司">
+    <link rel="shortcut icon" href="images/logo.ico" type="images/x-icon"/>
+    <link rel="icon" href="images/logo.ico" type="images/x-icon"/>
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="bg-warning">
+        <h3 style="height: 60px;line-height: 60px;">
+            <b style="height: 60px;width:10px;background-color:rgba(255,0,0,.8);display: inline-block;"></b>
+            <span style="vertical-align: 22px;margin-left: 20px;letter-spacing: 2px;">
+              角色配置
+            </span>
+        </h3>
+    </div>
+    <div class="container" style="padding-top:20px;">
+        <div class="row" style="margin-bottom: 20px;margin-left: 20px;">
+           <!-- <input type="text">
+            <button class="btn btn-info" style="margin-left:10px;">角色查询</button>-->
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-xs-5">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">可供选择的角色</div>
+                        <div class="panel-body">
+                            <select name="from[]" id="search" class="form-control" size="16" multiple="multiple">
+                                <option value="管理员">管理员</option>
+                                <option value="超级管理员">超级管理员</option>
+                                <option value="维护员">维护员</option>
+                                <option value="业务员">业务员</option>
+                                <option value="测试人员">测试人员</option>
+                                <option value="管理员2">管理员2</option>
+                                <option value="超级管理员2">超级管理员2</option>
+                                <option value="维护员2">维护员2</option>
+                                <option value="业务员2">业务员2</option>
+                                <option value="测试人员2">测试人员2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-2" style="margin-top: 10%;">
+                    <button type="button" id="search_undo" class="btn btn-primary btn-block">undo</button>
+                    <button type="button" id="search_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+                    <button type="button" id="search_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                    <button type="button" id="search_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                    <button type="button" id="search_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+                    <button type="button" id="search_redo" class="btn btn-warning btn-block">redo</button>
+                </div>
+
+                <div class="col-xs-5">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">以选定的角色</div>
+                        <div class="panel-body">
+                            <select name="to[]" id="search_to" class="form-control" size="16" multiple="multiple">
+                                <option value="管理员">管理员</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 全局js -->
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/multiselect.min.js"></script>
+<script>
+    $(function(){
+        $('#search').multiselect({
+            search: {
+                left: '<input type="text" name="q" class="form-control" placeholder="Search..." />',
+                right: '<input type="text" name="q" class="form-control" placeholder="Search..." />'
+            },
+            fireSearch: function (value) {
+                console.log(value);
+                return value;
+            },
+            keepRenderingSort: true,
+            beforeMoveToRight:function(left,right,options){
+               for(var i=0;i<options.length;i++){
+                   console.log(options[i].value);
+               }
+                return true;
+            },
+            beforeMoveToLeft:function(left,right,options){
+                for(var i=0;i<options.length;i++){
+                    console.log(options[i].value);
+                }
+                return true;
+            }
+        })
+    })
+</script>
+</body>
+</html>
