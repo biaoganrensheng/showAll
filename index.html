@@ -22,6 +22,8 @@
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <!--网页图标-->
     <!--定义动画的文件-->
+    <link rel="stylesheet" href="bar/css/gooey.min.css">
+    <link rel="stylesheet" href="bar/css/livedemo.css">
     <link href="css/animate.css" rel="stylesheet">
     <!--后台主题的框架css-->
     <link href="css/style.css?v=4.1.0" rel="stylesheet">
@@ -153,8 +155,19 @@
                         </ul>
                     </ul>
                 </div>
-            <div style="position:fixed;bottom:20px;left:0px;width:220px;text-align: center;" class="sign-out-btn">
+            <!--<div style="position:fixed;bottom:20px;left:0px;width:220px;text-align: center;" class="sign-out-btn">
                 <button class="btn btn-5 btn-5b icon-remove"><span>退出</span></button>
+            </div>-->
+            <div id="gooey-v">
+                <input type="checkbox" class="menu-open" name="menu-open4" id="menu-open4"/>
+                <label class="open-button" for="menu-open4">
+                    <span class="burger burger-1"></span>
+                    <span class="burger burger-2"></span>
+                    <span class="burger burger-3"></span>
+                </label>
+                <a href="javascript:;" class="gooey-menu-item" id="change-width"> <i class="fa fa-arrows-h fa-2x"></i> </a>
+                <a href="javascript:;" class="gooey-menu-item"> <i class="fa fa-sign-out fa-2x"></i> </a>
+                <a href="javascript:;" class="gooey-menu-item"> <i class="fa fa-trash-o  fa-2x"></i> </a>
             </div>
         </nav>
         <!--左侧导航结束-->
@@ -179,7 +192,7 @@
                         </div>
                     </div>
                     <div class="nav-gd pull-right">
-                        信息管理系统
+                        <span>信息管理系统</span>
                     </div>
                 </nav>
                 <div class="width_js">
@@ -213,6 +226,7 @@
 <script src="js/jquery.min.js?v=2.1.4"></script>
 <!--bootstrapt js文件-->
 <script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="bar/js/gooey.min.js"></script>
 <!--bootstrapt自定义手风琴菜单-->
 <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <!--滚动条插件-->
@@ -417,6 +431,38 @@
 <!--定义皮肤的js-->
 <script>
     set_Skins.init($(".J_setSkins"));
+    $("#gooey-v").gooeymenu({
+        bgColor: "#68d099",
+        contentColor: "white",
+        style: "vertical",
+        horizontal: {
+            menuItemPosition: "glue"
+        },
+        vertical: {
+            menuItemPosition: "spaced",
+            direction: "up"
+        },
+        circle: {
+            radius: 60
+        },
+        margin: "small",
+        size: 50,
+        bounce: true,
+        bounceLength: "small",
+        transitionStep: 100,
+        hover: "#68d099",
+        open: function() {
+            $(this).find(".gooey-menu-item").css("background-color", "steelblue");
+            $(this).find(".open-button").css("background-color", "steelblue");
+        },
+        close: function() {
+            $(this).find(".gooey-menu-item").css("background-color", "#68d099");
+            $(this).find(".open-button").css("background-color", "#68d099");
+        }
+    });
+    $("#change-width").click(function(){
+        $("")
+    })
 </script>
 </body>
 </html>

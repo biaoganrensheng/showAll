@@ -1,0 +1,142 @@
+
+/*Menus*/
+#gooey-v .fa.fa-2x{
+    margin-top: 13px;
+}
+#gooey-upper .gooey-menu-item,
+#gooey-upper .open-button {
+    left: 50%;
+    top: 50%;
+}
+#gooey-h .open-button,
+#gooey-h .gooey-menu-item {
+    margin-top: 4.2em;
+    margin-left: .6em;
+}
+#gooey-v .open-button,
+#gooey-v .gooey-menu-item {
+    margin-top: 30em;
+}
+#gooey-round,
+#gooey-API {
+    left: 30%;
+    top: 50%;
+}
+#gooey-round .open-button,
+#gooey-API .open-button,
+#gooey-round .gooey-menu-item,
+#gooey-API .gooey-menu-item {
+    margin-top: 6.5em;
+    margin-left: 3.2em;
+}
+.fa.fa-angle-double-up {
+    position: fixed;
+    left: 95%;
+    bottom: 0%;
+    cursor: pointer;
+    color: #748c99;
+}
+/* Responsive styles */
+
+@media screen and (min-device-width: 320px) and (orientation: portrait) {
+.fa.fa-angle-double-up {
+        left: 75%;
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 780px) and (orientation: landscape) { 
+.fa.fa-angle-double-up {
+        left: 89%;
+    }
+
+}
+
+@media (max-width: 780px) {
+    p {
+        font-size: .9em;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.3em;
+    }
+    .code-example {
+        margin-top: 5em;
+    }
+    #gooey-upper {
+        margin: 0;
+    }
+    #gooey-upper .gooey-menu-item,
+    #gooey-upper .open-button {
+        left: 44%;
+        top: 70%;
+    }
+    #gooey-round .gooey-menu-item, #gooey-round .open-button {
+        top:50%;
+    }
+    #gooey-h .open-button,
+    #gooey-h .gooey-menu-item {
+        top: 20%;
+        left: 20%;
+    }
+    .round-example {
+        min-height: 20em;
+    }
+    #gooey-v .open-button,
+    #gooey-v .gooey-menu-item {
+        margin-top: 0;
+    }
+    #gooey-v {
+        margin-top: 24em;
+    }
+    .event-api-ex {
+        min-height: 23em;
+    }
+    #gooey-API {
+        margin-top:6em;
+    }
+    .vertical-example {
+        min-height: 15em;
+    }
+    #gooey-round,
+    #gooey-API {
+        top: 30%;
+    }
+    #gooey-round .open-button,
+    #gooey-API .open-button,
+    #gooey-round .gooey-menu-item,
+    #gooey-API .gooey-menu-item {
+        margin-top: 3.5em;
+        margin-left: 3.2em;
+    }
+    .gooeySVG {
+        width: 0;
+        height: 0;
+    }
+    #gooey-h .open-button,
+    #gooey-h .gooey-menu-item {
+        margin-top: .8em;
+    }
+    .prettyprint {
+        font-size: .7em;
+    }
+    .plugin-demo-header {
+        margin: 1em 2em 5em 2em;
+    }
+    .feature {
+        width: 55px;
+        height: 55px;
+        line-height: 65px;
+    }
+    .feature-desc {
+        font-size: 1em;
+    }
+    .section-label {
+        font-size: 1.5em;
+        margin-top: 1em;
+    }
+    #menu-v-example {
+        min-height: 35em;
+    }
+}
+
