@@ -25,7 +25,7 @@ $(document).ready(function () {
 
 
     // 菜单切换
-    $('.navbar-minimalize').click(function () {
+   $('.navbar-minimalize').click(function () {
         $("body").toggleClass("mini-navbar");
         SmoothlyMenu();
     });
@@ -57,7 +57,7 @@ $(document).ready(function () {
         height: '100%'
     });
 
-    $('#side-menu>li').click(function () {
+   $('#side-menu>li').click(function () {
         if ($('body').hasClass('mini-navbar')) {
             NavToggle();
         }
@@ -85,7 +85,7 @@ $(window).bind("load resize", function () {
 });
 
 function NavToggle() {
-    $('.navbar-minimalize').trigger('click');
+   $('.navbar-minimalize').trigger('click');
 }
 
 function SmoothlyMenu() {

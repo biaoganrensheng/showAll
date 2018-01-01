@@ -155,9 +155,6 @@
                         </ul>
                     </ul>
                 </div>
-            <!--<div style="position:fixed;bottom:20px;left:0px;width:220px;text-align: center;" class="sign-out-btn">
-                <button class="btn btn-5 btn-5b icon-remove"><span>退出</span></button>
-            </div>-->
             <div id="gooey-v">
                 <input type="checkbox" class="menu-open" name="menu-open4" id="menu-open4"/>
                 <label class="open-button" for="menu-open4">
@@ -165,9 +162,9 @@
                     <span class="burger burger-2"></span>
                     <span class="burger burger-3"></span>
                 </label>
-                <a href="javascript:;" class="gooey-menu-item" id="change-width"> <i class="fa fa-arrows-h fa-2x"></i> </a>
-                <a href="javascript:;" class="gooey-menu-item"> <i class="fa fa-sign-out fa-2x"></i> </a>
-                <a href="javascript:;" class="gooey-menu-item"> <i class="fa fa-trash-o  fa-2x"></i> </a>
+                <a href="javascript:;" class="gooey-menu-item" id="change-width" data-container="body" data-toggle="popover" data-trigger="hover" data-content="伸缩列表项"> <i class="fa fa-arrows-h fa-2x"></i> </a>
+                <a href="javascript:;" class="gooey-menu-item" id="sign-out" data-container="body" data-toggle="popover" data-trigger="hover" data-content="退出系统"> <i class="fa fa-sign-out fa-2x"></i> </a>
+                <a href="javascript:;" class="gooey-menu-item" id="delBtn-all" data-container="body" data-toggle="popover" data-trigger="hover" data-content="关闭所有标签页"> <i class="fa fa-trash-o  fa-2x"></i> </a>
             </div>
         </nav>
         <!--左侧导航结束-->
@@ -177,9 +174,9 @@
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0" id="set_color" data-color="">
                     <div class="navbar-header navbar_define">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-info navbar-text" href="#">
+                        <!--<a class="navbar-minimalize minimalize-styl-2 btn btn-info navbar-text" href="#">
                             <i class="fa fa-bars"></i>
-                        </a>
+                        </a>-->
                         <!--面包线导航-->
                        <!-- <ol class="breadcrumb pull-left">
                             <li>主页</li>
@@ -460,9 +457,19 @@
             $(this).find(".open-button").css("background-color", "#68d099");
         }
     });
-    $("#change-width").click(function(){
-        $("")
+    $("#delBtn-all").click(function(){
+        if($(".tab_box>.btn").size()>=1){
+            ms.confirm("信息提示","您确定要关闭所有的标签页吗?",3,"确定","取消",suc);
+            function suc(index){
+               layer.close(index);
+                $(".tab_box .btn-delcommon_span").trigger("click");
+            }
+
+        }else{
+            ms.msg("对不起，你还没有打开标签页",5,2000);
+        }
     })
+    $('[data-toggle="popover"]').popover()
 </script>
 </body>
 </html>

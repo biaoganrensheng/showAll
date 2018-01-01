@@ -25,7 +25,7 @@
   margin: 3px 0 }
 .bwizard-steps {
   margin:0;
-  padding-left:40px;
+  padding-left:12px;
   line-height: 50px;
   display: inline-block;
   background: #2E3F4F;}
@@ -226,3 +226,12 @@ body.fixed-sidebar.mini-navbar .icon-remove{
   width:60px !important;
 }
 
+
+.popover{
+  background-color: #68d099;
+  color:#fff;
+}
+
+.popover.right > .arrow:after {
+  border-right-color: #68d099;
+}

@@ -25,7 +25,11 @@ $(document).ready(function () {
 
 
     // 菜单切换
-    $('.navbar-minimalize').click(function () {
+   /* $('.navbar-minimalize').click(function () {
+        $("body").toggleClass("mini-navbar");
+        SmoothlyMenu();
+    });*/
+    $('#change-width').click(function () {
         $("body").toggleClass("mini-navbar");
         SmoothlyMenu();
     });
@@ -93,12 +97,15 @@ function SmoothlyMenu() {
         $('#side-menu').hide();
         setTimeout(
             function () {
+                $("#gooey-v").animate({left:'240px'},350);
                 $('#side-menu').fadeIn(500);
             }, 100);
     } else if ($('body').hasClass('fixed-sidebar')) {
+        //alert(2)
         $('#side-menu').hide();
         setTimeout(
             function () {
+                $("#gooey-v").animate({left:'90px'},350);
                 $('#side-menu').fadeIn(500);
             }, 300);
     } else {
