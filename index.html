@@ -228,6 +228,8 @@
 <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <!--滚动条插件-->
 <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="jQuery.udraggable/jquery.event.ue.js"></script>
+<script type="text/javascript" src="jQuery.udraggable/jquery.udraggable.js"></script>
 <!--web弹层插件-->
 <script src="js/public_alert.js"></script>
 <!-- 自定义js -->
@@ -428,6 +430,7 @@
 <!--定义皮肤的js-->
 <script>
     set_Skins.init($(".J_setSkins"));
+    $('#gooey-v').udraggable();
     $("#gooey-v").gooeymenu({
         bgColor: "#68d099",
         contentColor: "white",
@@ -468,7 +471,7 @@
         }else{
             ms.msg("对不起，你还没有打开标签页",5,2000);
         }
-    })
+    });
     $('[data-toggle="popover"]').popover()
 </script>
 </body>

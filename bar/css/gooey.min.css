@@ -1,8 +1,11 @@
-.navimenu {
+#gooey-v {
     position: absolute;
     min-width: 0;
-    bottom:300px;
+    top:38%;
     left:240px;
+
+
+
     min-height: 0;
     z-index: 100;
     margin: auto auto auto -80px;
